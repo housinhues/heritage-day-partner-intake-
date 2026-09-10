@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ward 8 Heritage Day — Partner Intake</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --indigo-950: #131E36;
+    --indigo-900: #1C2C4E;
+    --indigo-line: #3A4C77;
+    --paper: #F3EEDC;
+    --paper-dim: #E7DFC6;
+    --ochre: #C17E2B;
+    --ochre-bright: #D6952F;
+    --rust: #9A3324;
+    --ink: #201D16;
+    --ink-soft: #5A5546;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+
+  .w8-root {
+    font-family: 'Public Sans', sans-serif;
+    background: var(--indigo-950);
+    color: var(--paper);
+    min-height: 100vh;
+    padding: 0 0 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .w8-band {
+    width: 100%;
+    height: 14px;
+    background: repeating-linear-gradient(
+      115deg,
+      var(--ochre) 0px, var(--ochre) 16px,
+      var(--rust) 16px, var(--rust) 32px,
+      var(--paper-dim) 32px, var(--paper-dim) 48px
+    );
+    flex-shrink: 0;
+  }
+
+  .w8-masthead {
+    max-width: 560px;
+    width: 100%;
+    padding: 40px 28px 28px;
+    text-align: left;
+  }
+
+  .w8-kicker {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--ochre-bright);
+    margin: 0 0 10px;
+  }
+
+  .w8-title {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.12;
+    margin: 0 0 12px;
+    color: var(--paper);
+  }
+
+  .w8-sub {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #C7CBDA;
+    margin: 0;
+    max-width: 46ch;
+  }
+
+  .w8-meta {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--indigo-line);
+    font-size: 13.5px;
+    color: #9AA3C0;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .w8-card {
+    max-width: 560px;
+    width: calc(100% - 32px);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 32px 28px 28px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+
+  .w8-field { margin-bottom: 20px; }
+
+  .w8-field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .w8-field .w8-hint {
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-left: 4px;
+  }
+
+  .w8-field input,
+  .w8-field select,
+  .w8-field textarea {
+    width: 100%;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid #C9C0A4;
+    background: #FBF9F1;
+    color: var(--ink);
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .w8-field textarea { min-height: 84px; resize: vertical; }
+
+  .w8-field input:focus,
+  .w8-field select:focus,
+  .w8-field textarea:focus {
+    border-color: var(--ochre);
+    box-shadow: 0 0 0 3px rgba(193,126,43,0.18);
+  }
+
+  .w8-row { display: flex; gap: 14px; }
+  .w8-row .w8-field { flex: 1; }
+
+  .w8-radio-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .w8-radio-option {
+    flex: 1;
+    position: relative;
+  }
+
+  .w8-radio-option input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .w8-radio-option label {
+    display: block;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #C9C0A4;
+    background: #FBF9F1;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .w8-radio-option input:checked + label {
+    background: var(--ochre);
+    border-color: var(--ochre);
+    color: #FFFDF8;
+  }
+
+  .w8-field input[type="file"] {
+    padding: 8px 10px;
+    font-size: 13.5px;
+    background: #FBF9F1;
+  }
+
+  .w8-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .w8-submit {
+    width: 100%;
+    background: var(--rust);
+    color: var(--paper);
+    font-family: 'Public Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.15s ease;
+  }
+
+  .w8-submit:hover { background: #832A1D; }
+  .w8-submit:disabled { background: #B49C81; cursor: default; }
+
+  .w8-foot {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .w8-error {
+    font-size: 13px;
+    color: var(--rust);
+    margin-top: 10px;
+    display: none;
+  }
+
+  .w8-success {
+    max-width: 560px;
+    width: calc(100% - 32px);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 40px 28px;
+    text-align: left;
+    display: none;
+  }
+
+  .w8-success h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+
+  .w8-success p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="w8-root">
+  <div class="w8-band"></div>
+
+  <div class="w8-masthead">
+    <p class="w8-kicker">Ward 8 Heritage Day &middot; Housing Hues</p>
+    <h1 class="w8-title">Foundational partner intake</h1>
+    <p class="w8-sub">Housing Hues is coordinating the Ward 8 Heritage Day event, with the support of Councillor Mbele's office, bringing together local businesses and organisations for a day of community, creativity, and belonging. This form is how we formally confirm your involvement and capture the details we need to give you a role on the day.</p>
+    <div class="w8-meta">
+      <span>Sat 26 Sep 2026</span>
+      <span>Z Park, Jouberton</span>
+      <span>10:00 &ndash; 18:00</span>
+    </div>
+  </div>
+
+  <form class="w8-card" id="w8-form">
+    <div class="w8-field">
+      <label>Have you already discussed this with Lesego or Housing Hues?</label>
+      <div class="w8-radio-group">
+        <div class="w8-radio-option">
+          <input type="radio" id="w8-briefed-yes" name="briefed" value="Yes" required>
+          <label for="w8-briefed-yes">Yes</label>
+        </div>
+        <div class="w8-radio-option">
+          <input type="radio" id="w8-briefed-no" name="briefed" value="No" required>
+          <label for="w8-briefed-no">No</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-org">Organisation or partner name</label>
+      <input type="text" id="w8-org" name="organisation" placeholder="e.g. Fwesh Visuals" required>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-sector">Sector</label>
+      <select id="w8-sector" name="sector" required>
+        <option value="" disabled selected>Choose one</option>
+        <option>Fashion &amp; apparel</option>
+        <option>Media &amp; production</option>
+        <option>Entertainment</option>
+        <option>Cleaning &amp; facilities</option>
+        <option>Food &amp; catering</option>
+        <option>Security</option>
+        <option>Trading &amp; projects</option>
+        <option>NGO / community organisation</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-role">Role on the day</label>
+      <select id="w8-role" name="role" required>
+        <option value="" disabled selected>Choose one</option>
+        <option>Sponsor</option>
+        <option>Vendor</option>
+        <option>Performer</option>
+        <option>Service provider</option>
+        <option>Media partner</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="w8-row">
+      <div class="w8-field">
+        <label for="w8-contact">Contact person</label>
+        <input type="text" id="w8-contact" name="contact_person" required>
+      </div>
+      <div class="w8-field">
+        <label for="w8-phone">Phone</label>
+        <input type="tel" id="w8-phone" name="phone" placeholder="060 456 1732" required>
+      </div>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-email">Email <span class="w8-hint">optional</span></label>
+      <input type="email" id="w8-email" name="email">
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-contribution">What you're offering <span class="w8-hint">cash, goods, or services &mdash; and roughly what it covers</span></label>
+      <textarea id="w8-contribution" name="contribution" placeholder="e.g. In-kind: PA system and sound technician for the full day" required></textarea>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-headcount">Headcount <span class="w8-hint">how many from your team will be involved on the day, optional</span></label>
+      <input type="number" id="w8-headcount" name="headcount" min="0" placeholder="e.g. 3">
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-logo">Logo <span class="w8-hint">optional</span></label>
+      <input type="file" id="w8-logo" name="logo" accept="image/*">
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-findus">Where can we find it <span class="w8-hint">social handle or link, if no logo file &mdash; optional</span></label>
+      <input type="text" id="w8-findus" name="find_us" placeholder="e.g. @yourbrand or a link">
+      <a class="w8-whatsapp" href="https://wa.me/27604561732" target="_blank" rel="noopener">Or WhatsApp us directly</a>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-anything">Anything on your mind before you send this <span class="w8-hint">optional</span></label>
+      <textarea id="w8-anything" name="additional_notes" placeholder="Questions, concerns, ideas — whatever's on your mind"></textarea>
+    </div>
+
+    <input type="hidden" name="_subject" value="Ward 8 Heritage Day — new foundational partner">
+
+    <button type="submit" class="w8-submit" id="w8-submit-btn">Send details</button>
+    <p class="w8-error" id="w8-error">Something went wrong sending this &mdash; please try again.</p>
+    <p class="w8-foot">Submissions go directly to Housing Hues. Real details only &mdash; this record becomes part of the event's official partner list.</p>
+  </form>
+
+  <div class="w8-success" id="w8-success">
+    <h2>Details received</h2>
+    <p>Thank you &mdash; your organisation has been added to the Ward 8 Heritage Day partner queue. Lesego Mongale will follow up to confirm the contribution and next steps.</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('w8-form');
+  const errorEl = document.getElementById('w8-error');
+  const submitBtn = document.getElementById('w8-submit-btn');
+  const successEl = document.getElementById('w8-success');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorEl.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/moeqynzd', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (err) {
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send details';
+    }
+  });
+</script>
+
+</body>
+</html>
