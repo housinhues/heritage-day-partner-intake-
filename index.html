@@ -187,6 +187,33 @@
     background: #FBF9F1;
   }
 
+  .w8-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .w8-checkbox-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--ochre);
+    cursor: pointer;
+  }
+
+  .w8-checkbox-row label {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .w8-field input:disabled {
+    background: #EDE8D8;
+    color: var(--ink-soft);
+  }
+
   .w8-whatsapp {
     display: inline-flex;
     align-items: center;
@@ -331,8 +358,39 @@
     </div>
 
     <div class="w8-field">
-      <label for="w8-email">Email <span class="w8-hint">optional</span></label>
+      <label for="w8-email">Email</label>
       <input type="email" id="w8-email" name="email">
+      <div class="w8-checkbox-row">
+        <input type="checkbox" id="w8-no-email" name="no_email" value="Yes">
+        <label for="w8-no-email">Don't have an email</label>
+      </div>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-instagram">Instagram</label>
+      <input type="text" id="w8-instagram" name="instagram" placeholder="@yourbrand">
+      <div class="w8-checkbox-row">
+        <input type="checkbox" id="w8-no-instagram" name="no_instagram" value="Yes">
+        <label for="w8-no-instagram">Don't have Instagram</label>
+      </div>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-facebook">Facebook</label>
+      <input type="text" id="w8-facebook" name="facebook" placeholder="Page name or link">
+      <div class="w8-checkbox-row">
+        <input type="checkbox" id="w8-no-facebook" name="no_facebook" value="Yes">
+        <label for="w8-no-facebook">Don't have Facebook</label>
+      </div>
+    </div>
+
+    <div class="w8-field">
+      <label for="w8-tiktok">TikTok</label>
+      <input type="text" id="w8-tiktok" name="tiktok" placeholder="@yourbrand">
+      <div class="w8-checkbox-row">
+        <input type="checkbox" id="w8-no-tiktok" name="no_tiktok" value="Yes">
+        <label for="w8-no-tiktok">Don't have TikTok</label>
+      </div>
     </div>
 
     <div class="w8-field">
@@ -346,9 +404,8 @@
     </div>
 
     <div class="w8-field">
-      <label for="w8-findus">Where can we find it <span class="w8-hint">social handle or link, if no logo file &mdash; optional</span></label>
-      <input type="text" id="w8-findus" name="find_us" placeholder="e.g. @yourbrand or a link">
-      <a class="w8-whatsapp" href="https://wa.me/27604561732" target="_blank" rel="noopener">Or WhatsApp us directly</a>
+      <label>Prefer to just send it?</label>
+      <a class="w8-whatsapp" href="https://wa.me/27604561732" target="_blank" rel="noopener">WhatsApp us directly</a>
     </div>
 
     <div class="w8-field">
@@ -374,6 +431,21 @@
   const errorEl = document.getElementById('w8-error');
   const submitBtn = document.getElementById('w8-submit-btn');
   const successEl = document.getElementById('w8-success');
+
+  const toggles = [
+    ['w8-no-email', 'w8-email'],
+    ['w8-no-instagram', 'w8-instagram'],
+    ['w8-no-facebook', 'w8-facebook'],
+    ['w8-no-tiktok', 'w8-tiktok']
+  ];
+  toggles.forEach(([boxId, inputId]) => {
+    const box = document.getElementById(boxId);
+    const input = document.getElementById(inputId);
+    box.addEventListener('change', () => {
+      input.disabled = box.checked;
+      if (box.checked) input.value = '';
+    });
+  });
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
